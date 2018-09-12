@@ -20,11 +20,19 @@ class VendorTest < Minitest::Test
   def test_inventory_is_initialized_as_empty_hash
     vendor = Vendor.new("Rocky Mountain Fresh")
 
-    assert_equal Hash.new , vendor.inventory
+    assert_equal Hash.new, vendor.inventory
   end
 
-  def
-    
+  def test_it_checks_stock_within_inventory
+    vendor = Vendor.new("Rocky Mountain Fresh")
+
+    assert_equal 0, vendor.check_stock("Peaches")
+  end
+
+  def test_it_adds_stock_to_inventory
+    vendor = Vendor.new("Rocky Mountain Fresh")
+    vendor.stock("Peaches", 30)
+    assert_equal 30, vendor.check_stock("Peaches")
   end
 
 end
